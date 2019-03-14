@@ -1,0 +1,19 @@
+table, th, td {
+    border: 2px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+    font-family: Arial;
+    font-size: larger;
+}
+
+#title {
+    background-color: grey;
+    color: black;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    background-color: lightblue;
+    text-align: left;
+}

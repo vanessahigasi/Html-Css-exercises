@@ -1,0 +1,35 @@
+h1 {
+   font-size: xx-large;
+   color: blue;
+}
+
+p {
+    color: blueviolet;
+}
+
+p {
+    color: coral;
+}
+
+.title {
+    color: aqua;
+}
+
+#important {
+    font-size: xx-large;
+    color: crimson;
+}
+
+p.warning {
+    color: chartreuse;
+}
+
+.warning {
+    font-size: larger;
+    color: coral;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
