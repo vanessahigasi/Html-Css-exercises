@@ -1,28 +1,32 @@
 console.log("main js loaded");
 
-select(posts);
-var filter = document.getElementById("filter");
-filter.addEventListener("change", select);
+createTable(posts);
+filter(posts);
+select.addEventListener("change",filter());
 
 var tableContainer = document.getElementById("dynamic-content");
 
-var table = "<table class='table table-striped'>";
+function createTable(posts) {
 
-table = table + "<tr><th>Id</th> + <th>User Id</th> + <th>Title</th> + <th>Body</th></tr>";
+    var table = "<table class='table table-striped'>";
 
 
-for (var index = 0; index < posts.length; index++) {
+    table = table + "<tr><th>Id</th> + <th>User Id</th> + <th>Title</th> + <th>Body</th></tr>";
 
-    var post = posts[index];
-    table = table + "<tr><td>"+ post.id + "</td><td>"+
-        post.userId + "</td><td>"+ post.title +
-        "</td><td>" + post.body +  "</td></tr>";
+
+    for (var index = 0; index < posts.length; index++) {
+
+        var post = posts[index];
+        table = table + "<tr><td>"+ post.id + "</td><td>"+
+            post.userId + "</td><td>"+ post.title +
+            "</td><td>" + post.body +  "</td></tr>";
+
+    }
+    table = table + "</table>";
+
+    tableContainer.innerHTML = table;
 
 }
-table = table + "</table>";
-
-tableContainer.innerHTML = table;
-
 
 function select(posts) {
 
@@ -30,21 +34,28 @@ function select(posts) {
     for (var i=0; i < posts.length; i++) {
         var post = posts[i];
         var userId = post.userId;
-    }
-    if (userIds.indexOf(userId) === -1 ) {
-        userIds.push(userId);
+
+        if (userIds.indexOf(userId) === -1 ) {
+            userIds.push(userId);
+        }
     }
 
-    var options = "<options value=''>Show All</options>";
+
+    var options = "<option value=''>Show All</option>";
     for (var i=0; i < userIds.length; i++) {
-        options += "<options value = '"+ userIds + "'> + userIds + </options>";
+        options += "<option value = '" + userIds[i] + "'>" + userIds[i] + "</option>";
     }
 
-    document.getElementById("filter").innerHTML = options;
-    }
+    document.getElementById("user-filter").innerHTML = options;
+}
 
-var select = document.getElementById("user-filter");
-var selectedValue = select.options[select.selectedIndex].value;
+function filter() {
+    var select = document.getElementById("user-filter");
+    var selectedValue = select.options[select.selectedIndex].value;
+
+    createTable(posts,selectedValue);
+}
+
 
 
 
