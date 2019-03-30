@@ -2,11 +2,13 @@ console.log("main js loaded");
 
 createTable(posts);
 filter(posts);
-select.addEventListener("change",filter());
+var select = document.getElementById("user-filter");
+select.addEventListener("change",filter);
 
-var tableContainer = document.getElementById("dynamic-content");
+
 
 function createTable(posts) {
+    var tableContainer = document.getElementById("dynamic-content");
 
     var table = "<table class='table table-striped'>";
 
@@ -24,6 +26,8 @@ function createTable(posts) {
     }
     table = table + "</table>";
 
+    console.log(table);
+
     tableContainer.innerHTML = table;
 
 }
@@ -35,11 +39,10 @@ function select(posts) {
         var post = posts[i];
         var userId = post.userId;
 
-        if (userIds.indexOf(userId) === -1 ) {
-            userIds.push(userId);
+        if (userIds.indexOf(userId) === -1 ) { //if is not repeated add to the array
+            userIds.push(userId); //push similar to add on Java
         }
     }
-
 
     var options = "<option value=''>Show All</option>";
     for (var i=0; i < userIds.length; i++) {
@@ -50,8 +53,10 @@ function select(posts) {
 }
 
 function filter() {
+
     var select = document.getElementById("user-filter");
     var selectedValue = select.options[select.selectedIndex].value;
+    console.log(selectedValue);
 
     createTable(posts,selectedValue);
 }
